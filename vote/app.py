@@ -7,7 +7,7 @@ import json
 import logging
 
 option_a = os.getenv('OPTION_A', "K8s")
-option_b = os.getenv('OPTION_B', "DockerSwarm")
+option_b = os.getenv('OPTION_B', "Dockerswarm")
 hostname = socket.gethostname()
 
 app = Flask(__name__)
