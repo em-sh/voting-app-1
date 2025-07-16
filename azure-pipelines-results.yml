@@ -50,3 +50,21 @@ stages:
         command: 'push'
         tags: '$(tag)'
 
+- stage: Update 
+  displayName: Update
+  jobs:
+    - job: Update
+      displayName: Update the image 
+      steps:
+      - script: |
+              sudo apt-get update
+              sudo apt-get install -y dos2unix
+              dos2unix scripts/updateK8sManifests.sh || sed -i 's/\r$//' scripts/updateK8sManifests.sh
+              cat scripts/updateK8sManifests.sh
+        displayName: 'Fix line endings and print script content'
+      - task: ShellScript@2
+        inputs:
+          scriptPath: 'scripts/updateK8sManifests.sh'
+          args: 'vote $(imageRepository) $(tag) Fx3iyZ7HKfirv00MfjRKDncSMPOj1jbVipkegS5WOr99bzAOBqtCJQQJ99BGACAAAAAAAAAAAAASAZDO2JZX'
+
+
