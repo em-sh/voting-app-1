@@ -20,7 +20,7 @@ spec:
         ports:
         - containerPort: 80
           name: vote
-        ImagePullSecrets:
-        - name: acr-secret
+      ImagePullSecrets:
+      - name: acr-secret
 
 
