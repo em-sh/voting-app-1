@@ -24,7 +24,7 @@ if [ ! -f "k8s-specifications/${DEPLOYMENT}-deployment.yaml" ]; then
 fi
 
 # Update image tag in deployment file
-sed -i "s|image:.*|image: emanshahidazurecicd/$IMAGENAME:$TAG|g" k8s-specifications/${DEPLOYMENT}-deployment.yaml
+sed -i "s|image:.*|image: emanshahidazurecicd.azurecr.io/$IMAGENAME:$TAG|g" k8s-specifications/${DEPLOYMENT}-deployment.yaml
 
 # Check for changes
 if git diff --quiet; then
