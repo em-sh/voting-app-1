@@ -5,8 +5,8 @@ set -x
 # Set the repository URL
 REPO_URL="https://Fx3iyZ7HKfirv00MfjRKDncSMPOj1jbVipkegS5WOr99bzAOBqtCJQQJ99BGACAAAAAAAAAAAAASAZDO2JZX@dev.azure.com/Practice-Proj/voting-app/_git/voting-app"
 
-# clone the repo
-git clone "REPO_URL" /tmp/temp_repo
+# Clone the repo
+git clone "$REPO_URL" /tmp/temp_repo
 
 # navigate to the cloned repo
 cd /tmp/temp_repo
