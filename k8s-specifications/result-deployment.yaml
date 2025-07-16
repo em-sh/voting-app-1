@@ -15,7 +15,7 @@ spec:
         app: result
     spec:
       containers:
-      - image: emanshahidazurecicd.azurecr.io/resultapp:28
+      - image: emanshahidazurecicd.azurecr.io/resultapp:29
         name: result
         ports:
         - containerPort: 80
