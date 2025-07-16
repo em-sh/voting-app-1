@@ -1,7 +1,5 @@
 #!/bin/bash
 
-sed -i 's/\r$//' "$0"
-
 set -x
 
 # Input parameters
