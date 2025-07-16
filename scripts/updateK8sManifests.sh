@@ -25,6 +25,4 @@ git commit -m "Update kubernetes manifest"
 git push
 
 # clean
-
 rm -rf /tmp/temp_repo
-
