@@ -15,7 +15,7 @@ spec:
         app: vote
     spec:
       containers:
-      - image: emanshahidazurecicd/votingapp:20
+      - image: emanshahidazurecicd/votingapp:21
         name: vote
         ports:
         - containerPort: 80
