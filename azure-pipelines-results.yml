@@ -65,6 +65,6 @@ stages:
       - task: ShellScript@2
         inputs:
           scriptPath: 'scripts/updateK8sManifests.sh'
-          args: 'result $(imageRepository) $(tag) Fx3iyZ7HKfirv00MfjRKDncSMPOj1jbVipkegS5WOr99bzAOBqtCJQQJ99BGACAAAAAAAAAAAAASAZDO2JZX'
+          args: 'result $(imageRepository) $(tag) (entered PAT will be shown here)'
 
 
