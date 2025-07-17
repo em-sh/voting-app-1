@@ -54,7 +54,6 @@ This project demonstrates a complete CI/CD setup using **Azure Kubernetes Servic
 * **ArgoCD Setup**
   ![AKS](https://github.com/em-sh/voting-app-1/blob/main/ArgoCD-Status.png)
 
-* 
 ---
 
 ## 📎 Useful Links
