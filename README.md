@@ -1,65 +1,61 @@
-# Example Voting App
+# Voting App – CI/CD with AKS, GitHub, ArgoCD
 
-A simple distributed application running across multiple Docker containers.
+##  Project Overview
 
-## Getting started
+This project demonstrates a complete CI/CD setup using **Azure Kubernetes Service (AKS)**, **GitHub**, **Azure Pipelines**, and **ArgoCD**.
 
-Download [Docker Desktop](https://www.docker.com/products/docker-desktop) for Mac or Windows. [Docker Compose](https://docs.docker.com/compose) will be automatically installed. On Linux, make sure you have the latest version of [Compose](https://docs.docker.com/compose/install/).
+### Application Architecture
 
-This solution uses Python, Node.js, .NET, with Redis for messaging and Postgres for storage.
+* 🟣 **Python Front-end Web App**: Allows users to vote between two options.
+* 🔴 **Redis**: Collects new votes in real-time.
+* 🟣 **.NET Worker Service**: Consumes votes from Redis and stores them.
+* 🟣 **PostgreSQL Database**: Persists data, backed by a Docker volume.
+* 🟣 **Node.js Results Web App**: Displays real-time voting results.
 
-Run in this directory to build and run the app:
+## ⚙️ CI Setup (Continuous Integration)
 
-```shell
-docker compose up
-```
+*  Code hosted on **GitHub** (source of truth for both app code and Kubernetes manifests).
+*  **Azure Pipelines** integrated with GitHub.
+*  **CI Pipeline Workflow**:
 
-The `vote` app will be running at [http://localhost:8080](http://localhost:8080), and the `results` will be at [http://localhost:8081](http://localhost:8081).
+  * Build multi-service Docker images.
+  * Push images to **Azure Container Registry (ACR)**.
+  * Run `updateK8sManifests.sh` to update image tags in Kubernetes YAML files.
+  * Push updated manifests back to GitHub.
 
-Alternately, if you want to run it on a [Docker Swarm](https://docs.docker.com/engine/swarm/), first make sure you have a swarm. If you don't, run:
+![Pipeline Diagram](https://github.com/em-sh/voting-app-1/blob/main/pipelines.png)
 
-```shell
-docker swarm init
-```
+##  CD Setup (Continuous Deployment)
 
-Once you have your swarm, in this directory run:
+*  **AKS Cluster** created on Azure with **VMSS Node Pools** for scalability and high availability.
+*  **ArgoCD** watches the GitHub repository for changes.
+*  On changes (new image tag commit), ArgoCD automatically updates the deployment in AKS without manual intervention.
+*  **Fully Automated CI/CD Pipeline** from code push to deployment.
 
-```shell
-docker stack deploy --compose-file docker-stack.yml vote
-```
+## 📊 Architecture & Flow Diagrams
 
-## Run the app in Kubernetes
+* **High-Level Architecture**
+![alt text](https://github.com/em-sh/voting-app-1/blob/main/CI-CD-workflow.jpg "High-Level Architecture")
 
-The folder k8s-specifications contains the YAML specifications of the Voting App's services.
+* **End-to-End Pipeline Execution**
+  ![Pipeline](https://github.com/em-sh/voting-app-1/blob/main/End-to-End%20Pipeline%20Execution.png)
 
-Run the following command to create the deployments and services. Note it will create these resources in your current namespace (`default` if you haven't changed it.)
+* **ArgoCD Setup**
+  ![AKS](https://github.com/em-sh/voting-app-1/blob/main/ArgoCD-Status.png)
 
-```shell
-kubectl create -f k8s-specifications/
-```
+## 📎 Useful Links
 
-The `vote` web app is then available on port 31000 on each host of the cluster, the `result` web app is available on port 31001.
+* [Azure DevOps Pipeline Setup Guide](https://dev.azure.com/)
+* [ArgoCD Documentation](https://argo-cd.readthedocs.io/en/stable/)
+* [AKS Documentation](https://learn.microsoft.com/en-us/azure/aks/)
+* [Tutorial](https://www.youtube.com/watch?v=dmGW22W3VOs)
 
-To remove them, run:
+## ✅ Summary
 
-```shell
-kubectl delete -f k8s-specifications/
-```
+This project demonstrates a **vendor-agnostic CI/CD pipeline** using:
 
-## Architecture
+* GitHub for code management
+* Azure Pipelines for CI
+* ArgoCD for automated CD into AKS
+* Clean GitOps workflow for transparency and control.
 
-![Architecture diagram](architecture.excalidraw.png)
-
-* A front-end web app in [Python](/vote) which lets you vote between two options
-* A [Redis](https://hub.docker.com/_/redis/) which collects new votes
-* A [.NET](/worker/) worker which consumes votes and stores them in…
-* A [Postgres](https://hub.docker.com/_/postgres/) database backed by a Docker volume
-* A [Node.js](/result) web app which shows the results of the voting in real time
-
-## Notes
-
-The voting application only accepts one vote per client browser. It does not register additional votes if a vote has already been submitted from a client.
-
-This isn't an example of a properly architected perfectly designed distributed app... it's just a simple
-example of the various types of pieces and languages you might see (queues, persistent data, etc), and how to
-deal with them in Docker at a basic level.
