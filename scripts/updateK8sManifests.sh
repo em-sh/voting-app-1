@@ -1,29 +1,42 @@
-#/bin/bash
+#!/bin/bash
 
 set -x
 
-# Set the repository URL
-REPO_URL="https://{PAT}@dev.azure.com/Practice-Proj/voting-app/_git/voting-app"
+# Input parameters
+DEPLOYMENT=$1
+IMAGENAME=$2
+TAG=$3
+PAT=$4
 
-# clone the repo
-git clone "REPO_URL" /tmp/temp_repo
+# Repository URL
+REPO_URL="https://${PAT}@dev.azure.com/Practice-Proj/voting-app/_git/voting-app"
 
-# navigate to the cloned repo
-cd /tmp/temp_repo
+# Clone repository
+git clone "$REPO_URL" /tmp/temp_repo || { echo "Error: Git clone failed"; exit 1; }
 
-# make changes to the image tag in a deployment.yaml file
-sed -i "s|image:.*|image: emanshahidazurecicd/$2:$3|g" k8s-specifications/$1-deployment.yaml
+# Navigate to repository
+cd /tmp/temp_repo || { echo "Error: Cannot cd to /tmp/temp_repo"; exit 1; }
 
-# add the changes
+# Check if deployment file exists
+if [ ! -f "k8s-specifications/${DEPLOYMENT}-deployment.yaml" ]; then
+  echo "Error: k8s-specifications/${DEPLOYMENT}-deployment.yaml does not exist"
+  exit 1
+fi
 
+# Update image tag in deployment file
+sed -i "s|image:.*|image: emanshahidazurecicd.azurecr.io/$IMAGENAME:$TAG|g" k8s-specifications/${DEPLOYMENT}-deployment.yaml
+
+# Check for changes
+if git diff --quiet; then
+  echo "No changes to commit"
+  rm -rf /tmp/temp_repo
+  exit 0
+fi
+
+# Commit and push changes
 git add .
+git commit -m "Update image tag to $IMAGENAME:$TAG"
+git push origin main || { echo "Error: Git push failed"; exit 1; }
 
-# commit the changes
-git commit -m "Update kubernetes manifest"
-
-# push the changes to repo
-git push
-
-# clean
-
-rm -rf /tmp/temp_repo
+# Clean up
+[ -d /tmp/temp_repo ] && rm -rf /tmp/temp_repo
