@@ -1,10 +1,6 @@
-Here's a complete and clean **README.md** draft for your project setup:
-
----
-
 # Voting App – CI/CD with AKS, GitHub, ArgoCD
 
-## 📌 Project Overview
+##  Project Overview
 
 This project demonstrates a complete CI/CD setup using **Azure Kubernetes Service (AKS)**, **GitHub**, **Azure Pipelines**, and **ArgoCD**.
 
@@ -16,31 +12,25 @@ This project demonstrates a complete CI/CD setup using **Azure Kubernetes Servic
 * 🟣 **PostgreSQL Database**: Persists data, backed by a Docker volume.
 * 🟣 **Node.js Results Web App**: Displays real-time voting results.
 
----
-
 ## ⚙️ CI Setup (Continuous Integration)
 
-* ✅ Code hosted on **GitHub** (source of truth for both app code and Kubernetes manifests).
-* ✅ **Azure Pipelines** integrated with GitHub.
-* ✅ **CI Pipeline Workflow**:
+*  Code hosted on **GitHub** (source of truth for both app code and Kubernetes manifests).
+*  **Azure Pipelines** integrated with GitHub.
+*  **CI Pipeline Workflow**:
 
   * Build multi-service Docker images.
   * Push images to **Azure Container Registry (ACR)**.
   * Run `updateK8sManifests.sh` to update image tags in Kubernetes YAML files.
   * Push updated manifests back to GitHub.
 
-![Pipeline Diagram](https://trello.com/1/cards/684fb92660abb78c85761394/attachments/68789fa6dfedef26677fac54/download/image.png)
+![Pipeline Diagram](https://github.com/em-sh/voting-app-1/blob/main/pipelines.png)
 
----
+##  CD Setup (Continuous Deployment)
 
-## 🚀 CD Setup (Continuous Deployment)
-
-* ✅ **AKS Cluster** created on Azure with **VMSS Node Pools** for scalability and high availability.
-* ✅ **ArgoCD** watches the GitHub repository for changes.
-* ✅ On changes (new image tag commit), ArgoCD automatically updates the deployment in AKS without manual intervention.
-* ✅ **Fully Automated CI/CD Pipeline** from code push to deployment.
-
----
+*  **AKS Cluster** created on Azure with **VMSS Node Pools** for scalability and high availability.
+*  **ArgoCD** watches the GitHub repository for changes.
+*  On changes (new image tag commit), ArgoCD automatically updates the deployment in AKS without manual intervention.
+*  **Fully Automated CI/CD Pipeline** from code push to deployment.
 
 ## 📊 Architecture & Flow Diagrams
 
@@ -50,20 +40,14 @@ This project demonstrates a complete CI/CD setup using **Azure Kubernetes Servic
 * **End-to-End Pipeline Execution**
   ![Pipeline](https://github.com/em-sh/voting-app-1/blob/main/End-to-End%20Pipeline%20Execution.png)
 
-
 * **ArgoCD Setup**
   ![AKS](https://github.com/em-sh/voting-app-1/blob/main/ArgoCD-Status.png)
-
----
 
 ## 📎 Useful Links
 
 * [Azure DevOps Pipeline Setup Guide](https://dev.azure.com/)
 * [ArgoCD Documentation](https://argo-cd.readthedocs.io/en/stable/)
 * [AKS Documentation](https://learn.microsoft.com/en-us/azure/aks/)
-
-
----
 
 ## ✅ Summary
 
