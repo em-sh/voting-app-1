@@ -68,3 +68,4 @@ stages:
           args: 'result $(imageRepository) $(tag) (entered PAT will be shown here)'
 
 
+

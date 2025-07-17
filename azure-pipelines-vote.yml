@@ -68,3 +68,4 @@ stages:
           scriptPath: 'scripts/updateK8sManifests.sh'
           args: 'vote $(imageRepository) $(tag) (entered PAT will be shown here)'
 
+
