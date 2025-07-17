@@ -47,7 +47,7 @@ This project demonstrates a complete CI/CD setup using **Azure Kubernetes Servic
 * **High-Level Architecture**
 ![alt text](https://github.com/em-sh/voting-app-1/blob/main/CI-CD-workflow.jpg "High-Level Architecture")
 
-**End-to-End Pipeline Execution**
+* **End-to-End Pipeline Execution**
   ![Pipeline](https://github.com/em-sh/voting-app-1/blob/main/End-to-End%20Pipeline%20Execution.png)
 
 
