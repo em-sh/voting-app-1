@@ -45,17 +45,16 @@ This project demonstrates a complete CI/CD setup using **Azure Kubernetes Servic
 ## 📊 Architecture & Flow Diagrams
 
 * **High-Level Architecture**
-  ![Architecture](https://trello.com/1/cards/684fb92660abb78c85761394/attachments/6878a1fb86a5dfc4972ad69b/download/image.png)
+![alt text](https://github.com/em-sh/voting-app-1/blob/main/CI-CD-workflow.jpg "High-Level Architecture")
 
-* **CI/CD Workflow**
-  ![CI/CD Flow](https://trello.com/1/cards/684fb92660abb78c85761394/attachments/6878a29b5a3f5591027274b4/download/image.png)
+**End-to-End Pipeline Execution**
+  ![Pipeline](https://github.com/em-sh/voting-app-1/blob/main/End-to-End%20Pipeline%20Execution.png)
 
-* **AKS Cluster Setup**
-  ![AKS](https://trello.com/1/cards/684fb92660abb78c85761394/attachments/6878a2cabb30c8ff4c6d1e40/download/image.png)
 
-* **End-to-End Pipeline Execution**
-  ![Pipeline](https://trello.com/1/cards/684fb92660abb78c85761394/attachments/6878a6e9930beb769132797a/download/image.png)
+* **ArgoCD Setup**
+  ![AKS](https://github.com/em-sh/voting-app-1/blob/main/ArgoCD-Status.png)
 
+* 
 ---
 
 ## 📎 Useful Links
