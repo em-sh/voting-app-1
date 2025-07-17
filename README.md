@@ -48,6 +48,7 @@ This project demonstrates a complete CI/CD setup using **Azure Kubernetes Servic
 * [Azure DevOps Pipeline Setup Guide](https://dev.azure.com/)
 * [ArgoCD Documentation](https://argo-cd.readthedocs.io/en/stable/)
 * [AKS Documentation](https://learn.microsoft.com/en-us/azure/aks/)
+* [Tutorial](https://www.youtube.com/watch?v=dmGW22W3VOs)
 
 ## ✅ Summary
 
